@@ -32,5 +32,13 @@ class DatabaseSeeder extends Seeder
                 'cgpa'       => $cgpa,
             ]);
         }
+        Student::create([
+    'roll_no' => '14',
+    'name' => 'Anugrah K Vas',
+    'email' => 'anugrah.k.vas@example.com',
+    'department' => 'CSE',
+    'semester' => 7,
+    'cgpa' => 7.22,
+]);
     }
 }
