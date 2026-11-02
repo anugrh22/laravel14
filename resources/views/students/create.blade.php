@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Student</title>
+    <title>Add New Student</title>
 </head>
 <body>
 
-<h1>Add New Student</h1>
+    <h1>Add New Student</h1>
 
-@if($errors->any())
-    @foreach($errors->all() as $error)
-        <p style="color:red">{{ $error }}</p>
-    @endforeach
-@endif
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+            <p style="color: red;">{{ $error }}</p>
+        @endforeach
+    @endif
 
-<form method="POST" action="{{ route('students.store') }}">
-    @csrf
+    <form action="{{ route('students.store') }}" method="POST">
+        @csrf
 
-    <p>Roll Number:
-        <input type="text" name="roll_no" required>
-    </p>
+        <label>Roll Number:</label><br>
+        <input type="text" name="roll_no" value="{{ old('roll_no') }}" required><br><br>
 
-    <p>Name:
-        <input type="text" name="name" required>
-    </p>
+        <label>Name:</label><br>
+        <input type="text" name="name" value="{{ old('name') }}" required><br><br>
 
-    <p>Email:
-        <input type="email" name="email" required>
-    </p>
+        <label>Email:</label><br>
+        <input type="email" name="email" value="{{ old('email') }}" required><br><br>
 
-    <p>Department:
-        <input type="text" name="department" value="CSE" required>
-    </p>
+        <label>Department:</label><br>
+        <input type="text" name="department" value="{{ old('department', 'CSE') }}" required><br><br>
 
-    <p>Semester:
-        <input type="number" name="semester" value="7" required>
-    </p>
+        <label>Semester:</label><br>
+        <input type="number" name="semester" min="1" max="8" value="{{ old('semester', 7) }}" required><br><br>
 
-    <p>CGPA:
-        <input type="number" name="cgpa" step="0.01">
-    </p>
+        <label>CGPA:</label><br>
+        <input type="number" name="cgpa" min="0" max="10" step="0.01" value="{{ old('cgpa') }}"><br><br>
 
-    <button type="submit">Save Student</button>
-</form>
+        <button type="submit">Save Student</button>
+    </form>
+
+    <br>
+    <a href="{{ route('students.index') }}">Back to Student List</a>
 
 </body>
 </html>
